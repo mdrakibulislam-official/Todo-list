@@ -94,6 +94,19 @@ class AppViewModel extends ChangeNotifier {
     newRep.setTaskList(tasks);
   }
 
+  //task details
+  bool check = false;
+  void onTapText(bool tap){
+    check = tap;
+    notifyListeners();
+  }
+
+  void setUpdateText(String text, int index){
+    tasks[index].title = text;
+    notifyListeners();
+    newRep.setTaskList(tasks);
+  }
+
 
 // bottom sheet
   void bottomSheetBuilder(Widget bottomSheetView, BuildContext context) {

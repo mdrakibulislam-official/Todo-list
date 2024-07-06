@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/views/task_details/task_details.dart';
 
@@ -45,7 +46,9 @@ class TaskListView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   child: ListTile(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> TaskDetails(taskTitle: viewModel.getTaskTitle(index), time: viewModel.getTime(index))));
+                      viewModel.onTapText(false);
+                      Navigator.push(context,
+                          PageTransition(child: TaskDetails(taskTitle: viewModel.getTaskTitle(index), index: index,), type: PageTransitionType.rightToLeft));
                     },
                       leading: FutureBuilder(
                           initialData: viewModel.getTaskValue(index),
